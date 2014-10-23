@@ -1,4 +1,4 @@
-#!/bin/python2.7
+#!/bin/python
 from scapy.all import *
 import datetime
 import json

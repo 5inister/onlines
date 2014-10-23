@@ -1,0 +1,8 @@
+#!/bin/s
+# RUN THIS AS SUDO
+
+apt-get install aptitude
+aptitude update; aptitude safe-upgrade
+aptitude install rfkil zd1211-firmware hostapd hostap-utils iw dnsmasq
+mkdir ~/backups
+cp /etc/network/interfaces ~/backups
