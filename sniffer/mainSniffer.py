@@ -121,7 +121,7 @@ def analysis(packet):
                                         proceed=1
                                         ip_domain_map[packet[IP].dst]=s+'.com'
                                 else:
-					print *
+					print '*'
                                         pass
 			#Check for raw layer
 				if packet.haslayer(Raw):
