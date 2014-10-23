@@ -3,7 +3,7 @@
 echo "Installing and updating packages"
 apt-get install aptitude
 aptitude update; aptitude safe-upgrade
-aptitude install rfkil zd1211-firmware hostapd hostap-utils iw dnsmasq
+aptitude install rfkill zd1211-firmware hostapd hostap-utils iw dnsmasq
 echo "Copying configuration files"
 mkdir ~/backups
 cp /etc/network/interfaces ~/backups/interfaces.backup
