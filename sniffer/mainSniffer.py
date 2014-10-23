@@ -3,6 +3,7 @@ from scapy.all import *
 import datetime
 import json
 import socket
+from subprocess import Popen, PIPE, STDOUT
 
 mac_useragent_map={}
 ip_domain_map={}
@@ -35,7 +36,26 @@ def getHost(packet):
 		return hostname
 	else:
 		return
-
+def getWhois(host,query=''):
+        '''Looks for a host's whois information using the command line.
+        Optionally searches for a query in the whois result.
+        Takes:
+        host->str
+        [query]->str
+        Returns:
+        whois_result->str/query->str/''
+        '''
+        whois_result = Popen(['whois', host],stdout=PIPE,stderr=STDOUT).communicate()[0]
+        if 'No match for' in whois_result:
+                print "No match for "+host
+                return ''
+        elif query != '':
+                if query in whois_result:
+                        return query
+                else:
+                        return ''
+        else:
+                return whois_result
 def getUserAgent(rawLayer):
 	'''Attempts to find a User-Agent string in a packet's
 	raw layer load.
@@ -86,6 +106,7 @@ def analysis(packet):
 				#Get domain name from destination IP address
 				ip_domain_map[packet[IP].dst]=getHost(packet)
 			domain=ip_domain_map[packet[IP].dst]
+                        whois=getWhois(packet[IP].dst)
 			print domain
 			#Is this connection relevant?
 			host=domain
@@ -95,8 +116,13 @@ def analysis(packet):
 					host=s
 					proceed=1
 					break
-				else:
-					host=domain
+				elif s in whois:
+                                        host=s
+                                        proceed=1
+                                        ip_domain_map[packet[IP].dst]=s+'.com'
+                                else:
+					print *
+                                        pass
 			#Check for raw layer
 				if packet.haslayer(Raw):
 					# print 'Haz Raw'

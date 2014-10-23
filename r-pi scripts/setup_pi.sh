@@ -3,7 +3,8 @@
 echo "Installing and updating packages"
 apt-get install aptitude
 aptitude update; aptitude safe-upgrade
-aptitude install rfkill zd1211-firmware hostapd hostap-utils iw dnsmasq
+aptitude install rfkill zd1211-firmware hostapd hostap-utils iw dnsmasq python-pip python-scapy whois
+pip install python-whois
 echo "Copying configuration files"
 mkdir ~/backups
 cp /etc/network/interfaces ~/backups/interfaces.backup
