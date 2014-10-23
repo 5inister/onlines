@@ -12,7 +12,7 @@
 # Short-Description: Wifi Access Point configuration
 # Description: Sets forwarding, starts hostap, enables NAT in iptables
 ### END INIT INFO 
-
+echo "Starting Access Point"
 # turn on forwarding
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
