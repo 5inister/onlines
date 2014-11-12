@@ -270,7 +270,7 @@ class Analysis():
                         #Is our service in qname?
                         if qname != None:
                                 for s in self.services.keys():
-                                        regEx=re.compile('.*'+s+'.*')
+                                        regEx=re.compile('^(?!accounts|www\.accounts).*?[.]?'+s+'.*$')
                                         if regEx.match(qname) != None:
                                                 print regEx.match(qname).group() + " in qname"
                                                 domain=self.services[s]
@@ -321,8 +321,8 @@ class Analysis():
                         else:
                                 return qname
 """THIS FUNCTION IS BROKEN AND NEEDS TO BE FIXED BY:
-INTEGRATING IT INTO THE CLASS
-ANALYSING LOCAL TRAFFIC FOR QNAMES
+-INTEGRATING IT INTO THE CLASS
+-ANALYSING LOCAL TRAFFIC FOR QNAMES
 
         def analysis(self,packet):
                 '''

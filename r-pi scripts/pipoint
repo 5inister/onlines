@@ -21,3 +21,7 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 
 # start the access point
 hostapd -B /etc/hostapd/hostapd.conf
+
+echo "starting sniffer"
+
+sudo python /home/pi/onlines/sniffer/mainSniffer.py
