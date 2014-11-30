@@ -3,8 +3,8 @@
 echo "Installing and updating packages"
 apt-get install aptitude
 aptitude update; aptitude safe-upgrade
-aptitude install rfkill zd1211-firmware hostapd hostap-utils iw dnsmasq python-pip python-scapy whois
-pip install ipwhois
+aptitude install rfkill zd1211-firmware hostapd hostap-utils iw dnsmasq python-dev python-pip python-scapy whois
+pip install ipwhois 
 echo "Copying configuration files"
 mkdir ~/backups
 cp /etc/network/interfaces ~/backups/interfaces.backup
@@ -17,7 +17,9 @@ cp ./dnsmasq.conf /etc/dnsmasq.conf
 service dnsmasq restart
 echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -t nat -A POSTROUTING -j MASQUERADE
-"Seting up access point on boot"
+echo "Seting up access point on boot"
 cp ./pipoint /etc/init.d/pipoint
 chmod +x /etc/init.d/pipoint
 update-rc.d pipoint start 99
+echo "Going for reboot"
+reboot

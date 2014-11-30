@@ -128,7 +128,7 @@ class Analysis():
                 str / None
                 '''
                 if packet.haslayer(DNSQR):
-                        return packet[DNS][DNSQR].qname
+                        return packet[DNSQR].qname
                 else:
                         return None
 
