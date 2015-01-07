@@ -3,7 +3,7 @@
 # Full analysis: sniff(iface='wlan0',prn=analysis,store=0)
 # Quick analysis: sniff(iface='wlan0',prn=PacketInstance.quickAnalysis,store=0)
 import datetime
-from ipwhois import IPWhois,IPDefinedError
+#from ipwhois import IPWhois,IPDefinedError
 import json
 import re
 from scapy.all import *
